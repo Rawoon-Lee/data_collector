@@ -5,8 +5,7 @@ import re
 url = 'https://www.imdb.com/chart/top/'
 
 temp = requests.get(url).text
-print(temp)
-temp1 = re.sub('\n|\t|\s','' ,temp)
+# print(temp)
 # <a href="/title/tt0068646/"
 # > width="45" height="67" alt="Daeboo"/>
 # </a>
@@ -21,17 +20,11 @@ ratings = re.findall(r'<strong title=.+ratings">([0-9.]+)</strong>', temp)
 # print(len(ratings))
 
 ranks = re.findall(r'<span name="rk" data-value="([0-9]+)"></span>', temp)
-ranks2 = re.findall(r'<td class="titleColumn">.*([0-9]+).*<a href', temp1)
-print(ranks)
-print(len(ranks))
 # print(ranks)
 # print(len(ranks))
 # for i, movie in enumerate(zip(titles, ratings)):
 #     print(f'{i+1:03d} :: {movie[0]} | {movie[1]}')
 
-# for i in zip(ranks, titles, ratings):
-#     print(f'{int(i[0]):03d} :: {i[1]} | {i[2]}')
+for i in zip(ranks, titles, ratings):
+    print(f'{int(i[0]):03d} :: {i[1]} | {i[2]}')
 
-# <td class="titleColumn">
-#       241.
-#       <a href
